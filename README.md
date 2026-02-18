@@ -62,7 +62,14 @@ A comprehensive Spring Boot & PostgreSQL based mini-ERP system designed specific
 CREATE DATABASE gastroerp;
 ```
 
-3. Update `src/main/resources/application.properties` with your database credentials:
+3. Configure database credentials using environment variables (recommended for security):
+```bash
+export DATABASE_URL=jdbc:postgresql://localhost:5432/gastroerp
+export DATABASE_USERNAME=your_username
+export DATABASE_PASSWORD=your_password
+```
+
+Alternatively, you can update `src/main/resources/application.properties` directly (not recommended for production):
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/gastroerp
 spring.datasource.username=your_username
@@ -77,6 +84,8 @@ git clone https://github.com/justin-leitol/gasto-erp.git
 cd gasto-erp
 ```
 
+> **Note**: The repository name uses 'gasto-erp' while the project artifact is 'gastro-erp' (gastronomie/gastronomy).
+
 2. Build the project:
 ```bash
 mvn clean install
@@ -88,6 +97,26 @@ mvn spring-boot:run
 ```
 
 The application will start on `http://localhost:8080`
+
+## Configuration
+
+### Environment Variables
+
+For production deployments, use environment variables to configure sensitive information:
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `DATABASE_URL` | PostgreSQL JDBC URL | `jdbc:postgresql://localhost:5432/gastroerp` |
+| `DATABASE_USERNAME` | Database username | `postgres` |
+| `DATABASE_PASSWORD` | Database password | `postgres` |
+
+Example:
+```bash
+export DATABASE_URL=jdbc:postgresql://prod-server:5432/gastroerp
+export DATABASE_USERNAME=gastro_user
+export DATABASE_PASSWORD=secure_password
+mvn spring-boot:run
+```
 
 ## API Documentation
 

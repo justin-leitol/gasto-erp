@@ -1,5 +1,6 @@
 package com.gastro.erp.service;
 
+import com.gastro.erp.exception.ResourceNotFoundException;
 import com.gastro.erp.model.Supplier;
 import com.gastro.erp.repository.SupplierRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,7 @@ public class SupplierService {
     @Transactional(readOnly = true)
     public Supplier getSupplierById(Long id) {
         return supplierRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Supplier not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Supplier", id));
     }
 
     @Transactional(readOnly = true)

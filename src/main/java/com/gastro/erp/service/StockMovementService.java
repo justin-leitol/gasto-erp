@@ -1,6 +1,7 @@
 package com.gastro.erp.service;
 
 import com.gastro.erp.dto.StockMovementRequest;
+import com.gastro.erp.exception.InvalidMovementTypeException;
 import com.gastro.erp.model.Ingredient;
 import com.gastro.erp.model.Recipe;
 import com.gastro.erp.model.StockMovement;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -27,7 +29,17 @@ public class StockMovementService {
         
         StockMovement movement = new StockMovement();
         movement.setIngredient(ingredient);
-        movement.setMovementType(StockMovement.MovementType.valueOf(request.getMovementType()));
+        
+        // Validate and set movement type
+        try {
+            movement.setMovementType(StockMovement.MovementType.valueOf(request.getMovementType()));
+        } catch (IllegalArgumentException e) {
+            String[] validTypes = Arrays.stream(StockMovement.MovementType.values())
+                    .map(Enum::name)
+                    .toArray(String[]::new);
+            throw new InvalidMovementTypeException(request.getMovementType(), validTypes);
+        }
+        
         movement.setQuantity(request.getQuantity());
         movement.setPreviousStock(ingredient.getStockQuantity());
         movement.setReason(request.getReason());

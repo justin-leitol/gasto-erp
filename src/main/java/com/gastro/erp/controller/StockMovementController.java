@@ -1,6 +1,7 @@
 package com.gastro.erp.controller;
 
 import com.gastro.erp.dto.StockMovementRequest;
+import com.gastro.erp.exception.InvalidMovementTypeException;
 import com.gastro.erp.model.StockMovement;
 import com.gastro.erp.service.StockMovementService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -44,8 +46,15 @@ public class StockMovementController {
     @GetMapping("/type/{movementType}")
     @Operation(summary = "Get stock movements by type")
     public ResponseEntity<List<StockMovement>> getMovementsByType(@PathVariable String movementType) {
-        StockMovement.MovementType type = StockMovement.MovementType.valueOf(movementType.toUpperCase());
-        return ResponseEntity.ok(stockMovementService.getMovementsByType(type));
+        try {
+            StockMovement.MovementType type = StockMovement.MovementType.valueOf(movementType.toUpperCase());
+            return ResponseEntity.ok(stockMovementService.getMovementsByType(type));
+        } catch (IllegalArgumentException e) {
+            String[] validTypes = Arrays.stream(StockMovement.MovementType.values())
+                    .map(Enum::name)
+                    .toArray(String[]::new);
+            throw new InvalidMovementTypeException(movementType, validTypes);
+        }
     }
 
     @GetMapping("/date-range")

@@ -1,6 +1,7 @@
 package com.gastro.erp.service;
 
 import com.gastro.erp.dto.InventoryStatus;
+import com.gastro.erp.exception.ResourceNotFoundException;
 import com.gastro.erp.model.Ingredient;
 import com.gastro.erp.repository.IngredientRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +37,7 @@ public class IngredientService {
     @Transactional(readOnly = true)
     public Ingredient getIngredientById(Long id) {
         return ingredientRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Ingredient not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Ingredient", id));
     }
 
     @Transactional(readOnly = true)

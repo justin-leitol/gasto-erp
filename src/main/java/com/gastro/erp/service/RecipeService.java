@@ -2,6 +2,7 @@ package com.gastro.erp.service;
 
 import com.gastro.erp.dto.RecipeIngredientRequest;
 import com.gastro.erp.dto.RecipeRequest;
+import com.gastro.erp.exception.ResourceNotFoundException;
 import com.gastro.erp.model.Ingredient;
 import com.gastro.erp.model.Recipe;
 import com.gastro.erp.model.RecipeIngredient;
@@ -43,13 +44,13 @@ public class RecipeService {
     @Transactional(readOnly = true)
     public Recipe getRecipeById(Long id) {
         return recipeRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Recipe not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Recipe", id));
     }
 
     @Transactional(readOnly = true)
     public Recipe getRecipeWithIngredients(Long id) {
         return recipeRepository.findByIdWithIngredients(id)
-                .orElseThrow(() -> new RuntimeException("Recipe not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Recipe", id));
     }
 
     @Transactional(readOnly = true)
