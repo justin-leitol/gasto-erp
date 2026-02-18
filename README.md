@@ -6,7 +6,7 @@ Mini-ERP System for Restaurants built with Spring Boot & PostgreSQL.
 
 Developed based on real-world experience in restaurant shift management.
 
-Restaurants often struggle with:
+### Restaurants often struggle with:
 
   Uncontrolled food cost
 
@@ -16,7 +16,7 @@ Restaurants often struggle with:
 
   Lack of KPI visibility
 
-GastroERP provides:
+### GastroERP provides:
 
   Ingredient-based stock tracking
 
@@ -28,7 +28,7 @@ GastroERP provides:
 
   Stock movement audit trail
 
-Tech Stack
+### Tech Stack
 
   Java 21
 
@@ -40,7 +40,7 @@ Tech Stack
 
   Docker
 
-Architecture
+### Architecture
 
   REST-based backend
 
@@ -50,7 +50,7 @@ Architecture
 
   PostgreSQL relational database
 
-Core Concept
+### Core Concept
 
   Auditability
 
