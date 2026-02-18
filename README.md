@@ -65,15 +65,22 @@ Core Concept
 ### Prerequisites
 
 - Java 21
+- Docker
 
-### Run (Windows)
+### Start Database (Docker)
+
+```bash
+docker compose up -d
+```
+
+### Run Backend (Windows)
 
 ```powershell
 cd backend
 gradlew.bat bootRun
 ```
 
-### Run (macOS/Linux)
+### Run Backend (macOS/Linux)
 
 ```bash
 cd backend

@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: gastro-erp-postgres
+    environment:
+      POSTGRES_DB: gastro_erp
+      POSTGRES_USER: gastro
+      POSTGRES_PASSWORD: gastro
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gastro -d gastro_erp"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

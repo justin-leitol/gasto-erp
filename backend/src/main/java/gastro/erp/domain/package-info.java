@@ -1,0 +1,1 @@
+package gastro.erp.domain;
