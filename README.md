@@ -59,3 +59,23 @@ Core Concept
   Financial transparency
 
   Status: WIP
+
+## Getting Started
+
+### Prerequisites
+
+- Java 21
+
+### Run (Windows)
+
+```powershell
+cd backend
+gradlew.bat bootRun
+```
+
+### Run (macOS/Linux)
+
+```bash
+cd backend
+./gradlew bootRun
+```

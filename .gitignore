@@ -1,0 +1,46 @@
+# Java / JVM
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+
+# Build outputs
+target/
+build/
+out/
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+
+# Gradle
+.gradle/
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs / Editors
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Local database files (if used for dev)
+*.db
+*.sqlite
+*.sqlite3
+
+# Docker local overrides
+docker-compose.override.yml
